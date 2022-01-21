@@ -135,7 +135,7 @@ class Config:
         LOGGER.info("Title Editing turned off")
     if REPLY_MESSAGE:
         REPLY_MESSAGE=REPLY_MESSAGE
-        REPLY_PM=True
+        REPLY_PM=False
         LOGGER.info("Reply Message Found, Enabled PM MSG")
     else:
         REPLY_MESSAGE=False
