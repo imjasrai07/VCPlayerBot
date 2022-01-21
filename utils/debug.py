@@ -60,7 +60,7 @@ async def set_heroku_var(client, message):
             await m.edit("You haven't provided any value for env, you should follow the correct format.\nExample: <code>/env CHAT=-1020202020202</code> to change or set CHAT var.\n<code>/env REPLY_MESSAGE= <code>To delete REPLY_MESSAGE.")
             return
 
-        if Config.DATABASE_URI and var in ["STARTUP_STREAM", "CHAT", "LOG_GROUP", "REPLY_MESSAGE", "DELAY", "RECORDING_DUMP"]:      
+        if Config.DATABASE_URI and var in ["STARTUP_STREAM", "CHAT", "LOG_GROUP", "DELAY", "RECORDING_DUMP"]:      
             await m.edit("Mongo DB Found, Setting up config vars...") 
             if not value:
                 await m.edit(f"No value for env specified. Trying to delete env {var}.")
@@ -238,7 +238,6 @@ async def sync_to_db():
         await db.edit_config("EDIT_TITLE", Config.EDIT_TITLE)
         await db.edit_config("CHAT", Config.CHAT)
         await db.edit_config("SUDO", Config.SUDO)
-        await db.edit_config("REPLY_MESSAGE", Config.REPLY_MESSAGE)
         await db.edit_config("LOG_GROUP", Config.LOG_GROUP)
         await db.edit_config("STREAM_URL", Config.STREAM_URL)
         await db.edit_config("DELAY", Config.DELAY)
@@ -266,7 +265,6 @@ async def sync_from_db():
         Config.playlist = await db.get_playlist()
         Config.LOG_GROUP = await db.get_config("LOG_GROUP")
         Config.SUDO = await db.get_config("SUDO") 
-        Config.REPLY_MESSAGE = await db.get_config("REPLY_MESSAGE") 
         Config.DELAY = await db.get_config("DELAY") 
         Config.STREAM_URL = await db.get_config("STREAM_URL") 
         Config.SCHEDULED_STREAM = await db.get_config("SCHEDULED_STREAM") 
@@ -298,8 +296,6 @@ async def check_db():
         db.add_config("IS_VIDEO", Config.IS_VIDEO)
     if not await db.is_saved("IS_LOOP"):
         db.add_config("IS_LOOP", Config.IS_LOOP)
-    if not await db.is_saved("REPLY_PM"):
-        db.add_config("REPLY_PM", Config.REPLY_PM)
     if not await db.is_saved("ADMIN_ONLY"):
         db.add_config("ADMIN_ONLY", Config.ADMIN_ONLY)
     if not await db.is_saved("SHUFFLE"):
@@ -346,8 +342,6 @@ async def edit_config(var, value):
         Config.LOG_GROUP = int(value)
     elif var == "DELAY":
         Config.DELAY = int(value)
-    elif var == "REPLY_MESSAGE":
-        Config.REPLY_MESSAGE = value
     elif var == "RECORDING_DUMP":
         Config.RECORDING_DUMP = value
     await sync_to_db()
