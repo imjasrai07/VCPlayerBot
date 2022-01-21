@@ -1847,8 +1847,6 @@ async def edit_config(var, value):
         Config.LOG_GROUP = int(value)
     elif var == "DELAY":
         Config.DELAY = int(value)
-    elif var == "REPLY_MESSAGE":
-        Config.REPLY_MESSAGE = value
     elif var == "RECORDING_DUMP":
         Config.RECORDING_DUMP = value
     elif var == "QUALITY":
