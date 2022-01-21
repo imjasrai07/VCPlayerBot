@@ -70,7 +70,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         admins = await get_admins(Config.CHAT)
         if query.data.startswith("info"):
             me, you = query.data.split("_")
-            text="Join @subin_works"
+            text="chat with @amrjsingh"
             if you == "volume":
                 await query.answer()
                 await query.message.edit_reply_markup(reply_markup=await volume_buttons())
@@ -109,7 +109,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if query.message.chat.type != "private" and query.message.reply_to_message.from_user is None:
                 return await query.answer("I cant help you here, since you are an anonymous admin, message me in private chat.", show_alert=True)
             elif query.message.chat.type != "private" and query.from_user.id != query.message.reply_to_message.from_user.id:
-                return await query.answer("Okda", show_alert=True)
+                return await query.answer("Okji", show_alert=True)
             me, nyav = query.data.split("_")
             back=InlineKeyboardMarkup(
                 [
@@ -160,7 +160,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
         if not query.from_user.id in admins:
             await query.answer(
-                "😒 Played Joji.mp3",
+                "😒 Played joji.mp3",
                 show_alert=True
                 )
             return
@@ -169,7 +169,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if query.message.chat.type != "private" and query.message.reply_to_message.from_user is None:
                 return await query.answer("You cant use scheduling here, since you are an anonymous admin. Schedule from private chat.", show_alert=True)
             if query.message.chat.type != "private" and query.from_user.id != query.message.reply_to_message.from_user.id:
-                return await query.answer("Okda", show_alert=True)
+                return await query.answer("Okji", show_alert=True)
             data = query.data
             today = datetime.datetime.now(IST)
             smonth=today.strftime("%B")
@@ -480,7 +480,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.edit_reply_markup(reply_markup=await get_buttons())
 
 
-        elif query.data in ["is_loop", "is_video", "admin_only", "edit_title", "set_shuffle", "reply_msg", "set_new_chat", "record", "record_video", "record_dim"]:
+        elif query.data in ["is_loop", "is_video", "admin_only", "edit_title", "set_shuffle", "set_new_chat", "record", "record_video", "record_dim"]:
             if query.data == "is_loop":
                 Config.IS_LOOP = set_config(Config.IS_LOOP)
                 await query.message.edit_reply_markup(reply_markup=await settings_panel())
@@ -507,10 +507,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
             elif query.data == "set_shuffle":
                 Config.SHUFFLE = set_config(Config.SHUFFLE)
-                await query.message.edit_reply_markup(reply_markup=await settings_panel())
-        
-            elif query.data == "reply_msg":
-                Config.REPLY_PM = set_config(Config.REPLY_PM)
                 await query.message.edit_reply_markup(reply_markup=await settings_panel())
         
             elif query.data == "record_dim":
@@ -567,11 +563,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     if query.message.reply_to_message.from_user is None:
                         pass
                     elif query.from_user.id != query.message.reply_to_message.from_user.id:
-                        return await query.answer("Okda", show_alert=True)
+                        return await query.answer("Okji", show_alert=True)
                 elif query.from_user.id in Config.ADMINS:
                     pass
                 else:
-                    return await query.answer("Okda", show_alert=True)
+                    return await query.answer("Okji", show_alert=True)
                 await query.answer("Menu Closed")
                 await query.message.delete()
         await query.answer()
