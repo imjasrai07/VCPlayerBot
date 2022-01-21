@@ -93,7 +93,7 @@ async def start(client, message):
             Config.SCHEDULED_STREAM[whom] = who
             await sync_to_db()
             if message.from_user.id not in Config.ADMINS:
-                return await msg.edit("OK da")
+                return await msg.edit("OK ji")
             today = datetime.now(IST)
             smonth=today.strftime("%B")
             obj = calendar.Calendar()
@@ -243,7 +243,7 @@ async def set_heroku_var(client, message):
                     env_ = "CUSTOM_QUALITY" 
                 else:
                     env_ = env
-                ENV_VARS = ["ADMINS", "SUDO", "CHAT", "LOG_GROUP", "STREAM_URL", "SHUFFLE", "ADMIN_ONLY", "REPLY_MESSAGE", 
+                ENV_VARS = ["ADMINS", "SUDO", "CHAT", "LOG_GROUP", "STREAM_URL", "SHUFFLE", "ADMIN_ONLY", 
                         "EDIT_TITLE", "RECORDING_DUMP", "RECORDING_TITLE", "IS_VIDEO", "IS_LOOP", "DELAY", "PORTRAIT", 
                         "IS_VIDEO_RECORD", "PTN", "CUSTOM_QUALITY"]
                 if env_ in ENV_VARS:
@@ -260,7 +260,7 @@ async def set_heroku_var(client, message):
             await delete_messages([message, m])
             return
 
-        if Config.DATABASE_URI and var in ["STARTUP_STREAM", "CHAT", "LOG_GROUP", "REPLY_MESSAGE", "DELAY", "RECORDING_DUMP", "QUALITY"]:      
+        if Config.DATABASE_URI and var in ["STARTUP_STREAM", "CHAT", "LOG_GROUP", "DELAY", "RECORDING_DUMP", "QUALITY"]:      
             await m.edit("Mongo DB Found, Setting up config vars...")
             await asyncio.sleep(2)  
             if not value:
