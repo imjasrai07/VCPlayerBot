@@ -59,7 +59,6 @@ class Config:
     #Optional Configuration
     SHUFFLE=is_enabled(os.environ.get("SHUFFLE", 'True'))
     ADMIN_ONLY=is_enabled(os.environ.get("ADMIN_ONLY", "False"))
-    REPLY_MESSAGE=os.environ.get("REPLY_MESSAGE", False)
     EDIT_TITLE = os.environ.get("EDIT_TITLE", True)
     #others
     
@@ -93,7 +92,7 @@ class Config:
 
     SCHEDULE_LIST=[]
     playlist=[]
-    CONFIG_LIST = ["ADMINS", "IS_VIDEO", "IS_LOOP", "REPLY_PM", "ADMIN_ONLY", "SHUFFLE", "EDIT_TITLE", "CHAT", 
+    CONFIG_LIST = ["ADMINS", "IS_VIDEO", "IS_LOOP", "ADMIN_ONLY", "SHUFFLE", "EDIT_TITLE", "CHAT", 
     "SUDO", "STREAM_URL", "DELAY", "LOG_GROUP", "SCHEDULED_STREAM", "SCHEDULE_LIST", 
     "IS_VIDEO_RECORD", "IS_RECORDING", "WAS_RECORDING", "RECORDING_TITLE", "PORTRAIT", "RECORDING_DUMP", "HAS_SCHEDULE", 
     "CUSTOM_QUALITY"]
@@ -133,13 +132,6 @@ class Config:
     if EDIT_TITLE in ["NO", 'False']:
         EDIT_TITLE=False
         LOGGER.info("Title Editing turned off")
-    if REPLY_MESSAGE:
-        REPLY_MESSAGE=REPLY_MESSAGE
-        REPLY_PM=False
-        LOGGER.info("Reply Message Found, Enabled PM MSG")
-    else:
-        REPLY_MESSAGE=False
-        REPLY_PM=False
 
     if E_BITRATE:
        try:
